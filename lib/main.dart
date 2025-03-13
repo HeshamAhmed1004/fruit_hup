@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'features/splash/presentation/views/spalsh_view.dart';
+import 'core/helpers/shared_preferences_singleton.dart';
+import 'core/routing/app_router.dart';
+import 'fruit_app.dart';
 
-void main() {
-  runApp(const FruitHup());
-}
-
-class FruitHup extends StatelessWidget {
-  const FruitHup({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      locale: Locale('ar'),
-      home: SplashView(),
-    );
-  }
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Prefs.init();
+  runApp( FruitHup(appRouter: AppRouter(),));
 }
